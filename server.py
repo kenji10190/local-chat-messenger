@@ -10,16 +10,15 @@ try:
 except FileNotFoundError:
     pass
 
-print("サーバーを起動しました。次のコマンドと質問を入力してください。")
+print("サーバーを起動しました。別ターミナルで質問を入力してください。")
 
 sock.bind(server_address)
 sock.listen(1)
 
 while True:
-    connection, client_address = sock.accept()
+    connection, _ = sock.accept()
 
     try:
-        print("クライアントのアドレスは", client_address)
 
         while True:
             data = connection.recv(1024)
@@ -46,6 +45,7 @@ while True:
     finally:
         print("接続を切ります。")
         connection.close()
+        break
         
 
 

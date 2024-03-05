@@ -12,22 +12,22 @@ except socket.error as err:
     sys.exit(1)
 
 try:
-    message = sys.argv[1]
-    sock.sendall(message.encode())
-    sock.settimeout(10)
+    while True:
+        print("次の質問を入力してください。")
+        message = input()
+        if "以上" in message:
+            break
 
-    try:
-        while True:
-            data = sock.recv(32)
-            data_str = data.decode("utf-8")
+        sock.sendall(message.encode())
 
-            if data:
-                print(data_str)
-            else:
-                break
+        data = sock.recv(1024)
+        data_str = data.decode("utf-8")
 
-    except TimeoutError:
-        print("質問が無いようなので、接続を切ります。")
+        if data:
+            print(data_str)
+        else:
+            print("有効な質問ではないようです。")
 
 finally:
+    print("接続を終了します。")
     sock.close()
