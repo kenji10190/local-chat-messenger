@@ -30,7 +30,7 @@ while True:
                 if "名前" in data_str:
                     response = "私は" + fake.name() + "です。"
 
-                elif "職業" or "仕事" in data_str:
+                elif "職業" in data_str or "仕事" in data_str:
                     response = fake.job() + "として仕事をしています。"
 
                 elif "会社" in data_str:
