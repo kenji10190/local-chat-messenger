@@ -45,6 +45,10 @@ while True:
                 print("クライアントからの接続が切れたので、終了します。")
                 break
 
+    except ConnectionResetError:
+        print("クライアントが強制終了しました。")
+        break
+
     finally:
         print("接続を切ります。")
         connection.close()
