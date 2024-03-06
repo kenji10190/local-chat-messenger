@@ -30,16 +30,19 @@ while True:
                 if "名前" in data_str:
                     response = "私は" + fake.name() + "です。"
 
-                elif "仕事" in data_str:
+                elif "職業" or "仕事" in data_str:
                     response = fake.job() + "として仕事をしています。"
 
                 elif "会社" in data_str:
                     response = fake.company() + "で働いています。"
 
+                else:
+                    response = "有効な質問ではないようです。"
+                    
                 connection.sendall(response.encode())
 
             else:
-                print("有効な質問が無いため、受信を終了します。")
+                print("クライアントからの接続が切れたので、終了します。")
                 break
 
     finally:

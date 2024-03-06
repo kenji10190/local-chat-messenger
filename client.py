@@ -13,8 +13,10 @@ except socket.error as err:
 
 try:
     while True:
-        print("次の質問を入力してください。")
+        print("質問を入力してください。")
         message = input()
+        sock.settimeout(20)
+
         if "以上" in message:
             break
 
@@ -25,8 +27,9 @@ try:
 
         if data:
             print(data_str)
-        else:
-            print("有効な質問ではないようです。")
+
+except TimeoutError:
+    print("一定時間入力がなかったため、終了します。")
 
 finally:
     print("接続を終了します。")
